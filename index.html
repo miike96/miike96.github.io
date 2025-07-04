@@ -67,11 +67,14 @@
     }
     .project a {
       display: inline-block;
-      margin-right: 1rem;
       margin-top: 0.5rem;
       text-decoration: none;
       color: #0066cc;
       font-weight: 600;
+    }
+    ul.tech-list {
+      list-style: disc;
+      padding-left: 1.5rem;
     }
     footer {
       text-align: center;
@@ -89,6 +92,7 @@
 
   <nav>
     <a href="#proyectos">Proyectos</a>
+    <a href="#tecnologias">Tecnologías</a>
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#contacto">Contacto</a>
   </nav>
@@ -98,14 +102,30 @@
       <h2>Proyectos</h2>
 
       <div class="project">
-        <h3>Gestor de Tareas (JavaFX)</h3>
-        <p>Aplicación de escritorio para gestionar tareas con prioridad, filtros y guardado en base de datos SQLite.</p>
-        <a href="https://github.com/miike96/GestorDeTareas" target="_blank">Ver código</a>
-        <a href="/descargas/GestorDeTareasInstaller.exe" download>Descargar demo</a>
+        <h3>Gestión de Incidencias (Spring Boot)</h3>
+        <p>Aplicación web en Java que permite listar clientes usando Spring Boot, Thymeleaf y Maven. Organizada por capas (modelo, servicio, controlador), con estilos personalizados en CSS y buenas prácticas de desarrollo backend.</p>
+        <a href="https://github.com/miike96/GestionDeIncidencias" target="_blank">Ver en GitHub</a>
       </div>
 
-      <!-- Más proyectos aquí -->
+      <div class="project">
+        <h3>Gestor de Tareas (JavaFX)</h3>
+        <p>Aplicación de escritorio construida con JavaFX para gestionar tareas con prioridad, filtros y persistencia en SQLite. Incluye diseño visual cuidado y estructura modular.</p>
+        <a href="https://github.com/miike96/GestorDeTareas" target="_blank">Ver en GitHub</a>
+      </div>
+    </section>
 
+    <section id="tecnologias">
+      <h2>Tecnologías que utilizo</h2>
+      <ul class="tech-list">
+        <li><strong>Java (17+):</strong> Lenguaje principal en mis proyectos, usado para backend, aplicaciones de escritorio y lógica empresarial.</li>
+        <li><strong>Spring Boot:</strong> Framework robusto para construir APIs y aplicaciones web en Java. Lo utilizo con arquitectura por capas y controladores REST.</li>
+        <li><strong>Maven:</strong> Gestor de dependencias y compilación, ideal para mantener proyectos escalables y estructurados.</li>
+        <li><strong>JavaFX:</strong> Framework para interfaces gráficas en escritorio. Ideal para aplicaciones como gestores de tareas u organizadores.</li>
+        <li><strong>Thymeleaf:</strong> Motor de plantillas para Java que permite renderizar HTML de forma dinámica y eficiente.</li>
+        <li><strong>CSS3:</strong> Para el diseño visual personalizado de mis vistas HTML, incluyendo tablas y formularios.</li>
+        <li><strong>SQLite / JDBC:</strong> Base de datos ligera utilizada en proyectos locales o de escritorio.</li>
+        <li><strong>Git / GitHub:</strong> Control de versiones, trabajo en ramas y subida de proyectos profesionales a repositorios públicos.</li>
+      </ul>
     </section>
 
     <section id="sobre-mi">
@@ -115,7 +135,7 @@
 
     <section id="contacto">
       <h2>Contacto</h2>
-      <p>Email: miguelopezrodriguez@outlook.com</p>
+      <p>Email: miguel.lopez@example.com</p>
       <p>GitHub: <a href="https://github.com/miike96" target="_blank">https://github.com/miike96</a></p>
     </section>
   </main>
