@@ -23,13 +23,8 @@
       padding: 2rem;
       text-align: center;
     }
-    header h1 {
-      font-size: 2.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
+    header h1 { font-size: 2.5rem; }
+    header p  { font-size: 1.2rem; margin-top: 0.5rem; }
     nav {
       background: #222;
       display: flex;
@@ -37,24 +32,14 @@
       gap: 2rem;
       padding: 1rem;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    nav a { color: #fff; text-decoration: none; font-weight: 600; }
     main {
       max-width: 1000px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
-    section {
-      margin-bottom: 3rem;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #111;
-    }
+    section { margin-bottom: 3rem; }
+    h2 { font-size: 2rem; margin-bottom: 1rem; color: #111; }
     .project {
       background: #fff;
       border-radius: 10px;
@@ -62,9 +47,8 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
     }
-    .project h3 {
-      margin-bottom: 0.5rem;
-    }
+    .project h3 { margin-bottom: 0.5rem; }
+    .project p  { margin-bottom: 0.5rem; }
     .project a {
       display: inline-block;
       margin-top: 0.5rem;
@@ -72,10 +56,26 @@
       color: #0066cc;
       font-weight: 600;
     }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      background: #f0f4ff;
+      color: #0066cc;
+      border: 1px solid #c0d4f5;
+      border-radius: 20px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
     ul.tech-list {
       list-style: disc;
       padding-left: 1.5rem;
     }
+    ul.tech-list li { margin-bottom: 0.4rem; }
     footer {
       text-align: center;
       padding: 2rem;
@@ -85,6 +85,7 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>Miguel López</h1>
     <p>Desarrollador de Software | Java · C# · Kotlin · Unity 3D</p>
@@ -98,33 +99,69 @@
   </nav>
 
   <main>
+
     <section id="proyectos">
       <h2>Proyectos</h2>
 
       <div class="project">
+        <h3>TiendaDev — Spring Boot + Oracle XE</h3>
+        <p>
+          Aplicación web MVC completa con Spring Boot 3 y Oracle XE 21c como base de datos.
+          Implementa autenticación con Spring Security 6, tres niveles de acceso (invitado,
+          usuario y administrador), portal de pago en 3 pasos, dashboard con gráficos en
+          tiempo real, mapa de ventas interactivo y chatbot de asistencia.
+        </p>
+        <div class="tags">
+          <span class="tag">Java 17</span>
+          <span class="tag">Spring Boot 3</span>
+          <span class="tag">Spring Security</span>
+          <span class="tag">Oracle XE</span>
+          <span class="tag">JPA / Hibernate</span>
+          <span class="tag">Bootstrap 5</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a href="https://github.com/miike96/tienda-spring-boot" target="_blank">Ver en GitHub</a>
+      </div>
+
+      <div class="project">
         <h3>Gestión de Incidencias (Spring Boot)</h3>
         <p>Aplicación web en Java que permite listar clientes usando Spring Boot, Thymeleaf y Maven. Organizada por capas (modelo, servicio, controlador), con estilos personalizados en CSS y buenas prácticas de desarrollo backend.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Thymeleaf</span>
+          <span class="tag">Maven</span>
+        </div>
         <a href="https://github.com/miike96/GestionDeIncidencias" target="_blank">Ver en GitHub</a>
       </div>
 
       <div class="project">
         <h3>Gestor de Tareas (JavaFX)</h3>
         <p>Aplicación de escritorio construida con JavaFX para gestionar tareas con prioridad, filtros y persistencia en SQLite. Incluye diseño visual cuidado y estructura modular.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">JavaFX</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">JDBC</span>
+        </div>
         <a href="https://github.com/miike96/GestorDeTareas" target="_blank">Ver en GitHub</a>
       </div>
+
     </section>
 
     <section id="tecnologias">
       <h2>Tecnologías que utilizo</h2>
       <ul class="tech-list">
         <li><strong>Java (17+):</strong> Lenguaje principal en mis proyectos, usado para backend, aplicaciones de escritorio y lógica empresarial.</li>
-        <li><strong>Spring Boot:</strong> Framework robusto para construir APIs y aplicaciones web en Java. Lo utilizo con arquitectura por capas y controladores REST.</li>
-        <li><strong>Maven:</strong> Gestor de dependencias y compilación, ideal para mantener proyectos escalables y estructurados.</li>
-        <li><strong>JavaFX:</strong> Framework para interfaces gráficas en escritorio. Ideal para aplicaciones como gestores de tareas u organizadores.</li>
-        <li><strong>Thymeleaf:</strong> Motor de plantillas para Java que permite renderizar HTML de forma dinámica y eficiente.</li>
-        <li><strong>CSS3:</strong> Para el diseño visual personalizado de mis vistas HTML, incluyendo tablas y formularios.</li>
-        <li><strong>SQLite / JDBC:</strong> Base de datos ligera utilizada en proyectos locales o de escritorio.</li>
-        <li><strong>Git / GitHub:</strong> Control de versiones, trabajo en ramas y subida de proyectos profesionales a repositorios públicos.</li>
+        <li><strong>Spring Boot 3:</strong> Framework robusto para construir APIs y aplicaciones web en Java con arquitectura por capas y controladores REST.</li>
+        <li><strong>Spring Security 6:</strong> Autenticación y autorización basada en roles (RBAC), BCrypt y protección de endpoints.</li>
+        <li><strong>Oracle XE / JPA / Hibernate:</strong> Base de datos relacional en Docker con ORM completo y consultas parametrizadas.</li>
+        <li><strong>Maven:</strong> Gestor de dependencias y compilación para proyectos escalables y estructurados.</li>
+        <li><strong>JavaFX:</strong> Framework para interfaces gráficas en escritorio.</li>
+        <li><strong>Thymeleaf:</strong> Motor de plantillas para renderizar HTML de forma dinámica.</li>
+        <li><strong>Bootstrap 5 / Chart.js / Leaflet:</strong> Frontend moderno con gráficos interactivos y mapas.</li>
+        <li><strong>Docker:</strong> Contenedores para levantar servicios de base de datos en local.</li>
+        <li><strong>Git / GitHub:</strong> Control de versiones y publicación de proyectos.</li>
       </ul>
     </section>
 
@@ -138,10 +175,12 @@
       <p>Email: miguelopezrodriguez@outlook.com</p>
       <p>GitHub: <a href="https://github.com/miike96" target="_blank">https://github.com/miike96</a></p>
     </section>
+
   </main>
 
   <footer>
     <p>&copy; 2025 Miguel López. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>
