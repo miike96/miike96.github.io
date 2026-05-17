@@ -3,184 +3,1105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Miguel López | Portafolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Miguel López | Desarrollador de Software</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0; padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
+    :root {
+      --bg-primary:   #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-card:      #16161f;
+      --bg-card-hover:#1c1c28;
+      --accent:       #3b82f6;
+      --accent-glow:  rgba(59,130,246,0.35);
+      --accent-light: #60a5fa;
+      --accent-dark:  #1d4ed8;
+      --text-primary: #e2e8f0;
+      --text-secondary:#94a3b8;
+      --text-muted:   #64748b;
+      --border:       rgba(59,130,246,0.18);
+      --border-subtle:rgba(255,255,255,0.06);
+      --success:      #10b981;
+      --warning:      #f59e0b;
+      --purple:       #8b5cf6;
+      --pink:         #ec4899;
+    }
+    html { scroll-behavior: smooth; }
     body {
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 3px; }
+
+    /* ===== CANVAS PARTICLES ===== */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
     }
-    header h1 { font-size: 2.5rem; }
-    header p  { font-size: 1.2rem; margin-top: 0.5rem; }
+
+    /* ===== NAV ===== */
     nav {
-      background: #222;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 2rem;
+      height: 64px;
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
+      align-items: center;
+      justify-content: space-between;
     }
-    nav a { color: #fff; text-decoration: none; font-weight: 600; }
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section { margin-bottom: 3rem; }
-    h2 { font-size: 2rem; margin-bottom: 1rem; color: #111; }
-    .project {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .project h3 { margin-bottom: 0.5rem; }
-    .project p  { margin-bottom: 0.5rem; }
-    .project a {
-      display: inline-block;
-      margin-top: 0.5rem;
+    .nav-logo {
+      font-family: 'Fira Code', monospace;
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 500;
       text-decoration: none;
-      color: #0066cc;
-      font-weight: 600;
+      letter-spacing: 0.05em;
     }
-    .tags {
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-dark), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; font-weight: 800;
+      color: #fff;
+      margin: 0 auto 1.5rem;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(59,130,246,0.15);
+      animation: avatarPulse 3s ease-in-out infinite, fadeInDown 0.8s ease both;
+      position: relative;
+    }
+    .hero-avatar::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      opacity: 0.4;
+      animation: avatarRing 3s ease-in-out infinite;
+    }
+    @keyframes avatarPulse {
+      0%,100% { box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(59,130,246,0.15); }
+      50%      { box-shadow: 0 0 60px var(--accent-glow), 0 0 120px rgba(59,130,246,0.25); }
+    }
+    @keyframes avatarRing {
+      0%,100% { transform: scale(1); opacity: 0.4; }
+      50%      { transform: scale(1.08); opacity: 0.1; }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--accent-light);
+      margin-bottom: 1.2rem;
+      animation: fadeInDown 0.8s 0.1s ease both;
+      font-family: 'Fira Code', monospace;
+    }
+    .hero-badge::before { content: '▶'; font-size: 0.6rem; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      animation: fadeInDown 0.8s 0.2s ease both;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 0.8s 0.3s ease both;
+    }
+    .hero-stack {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      animation: fadeInDown 0.8s 0.4s ease both;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeInDown 0.8s 0.5s ease both;
+    }
+    .btn-primary {
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 6px 30px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(59,130,246,0.08);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      animation: fadeInDown 1.2s 1s ease both;
+    }
+    .scroll-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: scrollDot 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0%,100% { opacity: 0.2; transform: translateY(0); }
+      50%      { opacity: 1;   transform: translateY(4px); }
+    }
+
+    /* ===== SECTIONS ===== */
+    main { position: relative; z-index: 1; }
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .section-line {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== EXPERIENCE TIMELINE ===== */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--purple), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+    }
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2.45rem;
+      top: 0.35rem;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .timeline-dot.current {
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(16,185,129,0.5);
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%,100% { box-shadow: 0 0 12px rgba(16,185,129,0.5); }
+      50%      { box-shadow: 0 0 20px rgba(16,185,129,0.8); }
+    }
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .timeline-card:hover { border-color: var(--border); }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-role {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .timeline-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: rgba(59,130,246,0.1);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      white-space: nowrap;
+    }
+    .timeline-company {
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .timeline-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
       margin-top: 0.75rem;
     }
-    .tag {
-      background: #f0f4ff;
-      color: #0066cc;
-      border: 1px solid #c0d4f5;
-      border-radius: 20px;
-      padding: 0.2rem 0.7rem;
-      font-size: 0.78rem;
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .skills-category h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-family: 'Fira Code', monospace;
+    }
+    .skill-item { margin-bottom: 1rem; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .skill-name {
+      font-size: 0.88rem;
       font-weight: 600;
+      color: var(--text-primary);
     }
-    ul.tech-list {
-      list-style: disc;
-      padding-left: 1.5rem;
+    .skill-pct {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
     }
-    ul.tech-list li { margin-bottom: 0.4rem; }
+    .skill-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 3px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fill-blue   { background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
+    .fill-purple { background: linear-gradient(90deg, var(--purple), #a78bfa); }
+    .fill-green  { background: linear-gradient(90deg, #059669, var(--success)); }
+    .fill-orange { background: linear-gradient(90deg, #d97706, var(--warning)); }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all 0.35s ease;
+      opacity: 0;
+      transform: translateY(24px);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      transform: scaleX(0);
+      transition: transform 0.35s ease;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card:hover {
+      border-color: var(--border);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+    }
+    .project-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .project-card p {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(59,130,246,0.1);
+      color: var(--accent-light);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: 'Fira Code', monospace;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .project-link:hover { color: var(--accent-light); gap: 0.6rem; }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; }
+    .about-text strong { color: var(--text-primary); }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .stat-card:hover { border-color: var(--border); }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-wrapper h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .contact-wrapper p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .contact-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.65rem 1.2rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .contact-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(59,130,246,0.08);
+    }
+
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
       padding: 2rem;
-      background: #222;
-      color: #ccc;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer span { color: var(--accent); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Miguel López</h1>
-    <p>Desarrollador de Software | Java · C# · Kotlin · Unity 3D</p>
-  </header>
+  <!-- PARTICLES -->
+  <canvas id="particles-canvas"></canvas>
 
+  <!-- NAV -->
   <nav>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#tecnologias">Tecnologías</a>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#hero" class="nav-logo">&lt;miguel.dev /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
   </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-badge">Disponible para nuevas oportunidades</div>
+    <div class="hero-avatar">ML</div>
+    <h1>Miguel <span>López</span></h1>
+    <p class="hero-subtitle">Desarrollador de Software Backend</p>
+    <p class="hero-stack">Java · PHP · Spring Boot · Yii2 · Unity 3D</p>
+    <div class="hero-cta">
+      <a href="#proyectos" class="btn-primary">Ver Proyectos</a>
+      <a href="#contacto" class="btn-outline">Contactar</a>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
 
   <main>
 
+    <!-- EXPERIENCIA -->
+    <section id="experiencia">
+      <p class="section-label reveal">// experiencia</p>
+      <h2 class="reveal">Trayectoria Profesional</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot current"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Desarrollador PHP · Yii2</span>
+              <span class="timeline-date">2024 — Presente</span>
+            </div>
+            <div class="timeline-company">Posición Actual · Trabajo</div>
+            <p class="timeline-desc">
+              Desarrollo y mantenimiento de aplicaciones web con PHP y el framework Yii2.
+              Implementación de módulos, APIs RESTful, optimización de consultas SQL
+              y mantenimiento de sistemas en producción. Aplicación de buenas prácticas
+              MVC y gestión de dependencias con Composer.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">PHP</span>
+              <span class="tag">Yii2</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Composer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Desarrollador Java · Spring Boot</span>
+              <span class="timeline-date">2021 — 2024</span>
+            </div>
+            <div class="timeline-company">Proyectos Backend · Experiencia</div>
+            <p class="timeline-desc">
+              Construcción de aplicaciones web completas con Java 17 y Spring Boot 3.
+              Integración con bases de datos relacionales (Oracle XE, PostgreSQL),
+              autenticación con Spring Security 6 (RBAC, BCrypt), contenedores Docker
+              y frontend dinámico con Thymeleaf y Bootstrap.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Java 17</span>
+              <span class="tag">Spring Boot 3</span>
+              <span class="tag">Spring Security</span>
+              <span class="tag">JPA/Hibernate</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Grado en Ingeniería de Software</span>
+              <span class="timeline-date">En curso</span>
+            </div>
+            <div class="timeline-company">Universidad · Formación Académica</div>
+            <p class="timeline-desc">
+              Formación en algoritmos, estructuras de datos, ingeniería del software,
+              bases de datos, sistemas operativos y desarrollo de aplicaciones multiplataforma.
+              Titulación previa: Técnico en Desarrollo de Aplicaciones Multiplataforma.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Algoritmos</span>
+              <span class="tag">Bases de Datos</span>
+              <span class="tag">DAM</span>
+              <span class="tag">Ingeniería SW</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades">
+      <p class="section-label reveal">// habilidades</p>
+      <h2 class="reveal">Stack Tecnológico</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="skills-grid">
+        <!-- Backend -->
+        <div class="skills-category reveal">
+          <h3>Backend</h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Java 17+</span>
+              <span class="skill-pct">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-blue" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Spring Boot 3</span>
+              <span class="skill-pct">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-blue" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">PHP · Yii2</span>
+              <span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-purple" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Spring Security 6</span>
+              <span class="skill-pct">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-blue" data-width="78"></div></div>
+          </div>
+        </div>
+
+        <!-- Bases de datos -->
+        <div class="skills-category reveal">
+          <h3>Bases de datos &amp; DevOps</h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Oracle XE / SQL</span>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-orange" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">MySQL / SQLite</span>
+              <span class="skill-pct">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-orange" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">JPA / Hibernate</span>
+              <span class="skill-pct">76%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-green" data-width="76"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Docker</span>
+              <span class="skill-pct">65%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-green" data-width="65"></div></div>
+          </div>
+        </div>
+
+        <!-- Frontend & Otros -->
+        <div class="skills-category reveal">
+          <h3>Frontend &amp; Otros</h3>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Thymeleaf / HTML/CSS</span>
+              <span class="skill-pct">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-blue" data-width="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Bootstrap 5 / Chart.js</span>
+              <span class="skill-pct">72%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-purple" data-width="72"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Unity 3D / C#</span>
+              <span class="skill-pct">68%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-purple" data-width="68"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Kotlin / Jetpack Compose</span>
+              <span class="skill-pct">60%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill fill-green" data-width="60"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
     <section id="proyectos">
-      <h2>Proyectos</h2>
+      <p class="section-label reveal">// proyectos</p>
+      <h2 class="reveal">Proyectos Destacados</h2>
+      <div class="section-line reveal"></div>
 
-      <div class="project">
-        <h3>TiendaDev — Spring Boot + Oracle XE</h3>
-        <p>
-          Aplicación web MVC completa con Spring Boot 3 y Oracle XE 21c como base de datos.
-          Implementa autenticación con Spring Security 6, tres niveles de acceso (invitado,
-          usuario y administrador), portal de pago en 3 pasos, dashboard con gráficos en
-          tiempo real, mapa de ventas interactivo y chatbot de asistencia.
-        </p>
-        <div class="tags">
-          <span class="tag">Java 17</span>
-          <span class="tag">Spring Boot 3</span>
-          <span class="tag">Spring Security</span>
-          <span class="tag">Oracle XE</span>
-          <span class="tag">JPA / Hibernate</span>
-          <span class="tag">Bootstrap 5</span>
-          <span class="tag">Docker</span>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-icon">🛒</div>
+          <h3>TiendaDev — Spring Boot + Oracle XE</h3>
+          <p>
+            Aplicación web MVC completa con autenticación multi-rol (Spring Security 6),
+            portal de pago en 3 pasos, dashboard con gráficos en tiempo real,
+            mapa de ventas interactivo y chatbot de asistencia integrado.
+          </p>
+          <div class="tags">
+            <span class="tag">Java 17</span>
+            <span class="tag">Spring Boot 3</span>
+            <span class="tag">Spring Security</span>
+            <span class="tag">Oracle XE</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Bootstrap 5</span>
+          </div>
+          <a href="https://github.com/miike96/tienda-spring-boot" target="_blank" class="project-link">
+            Ver en GitHub →
+          </a>
         </div>
-        <a href="https://github.com/miike96/tienda-spring-boot" target="_blank">Ver en GitHub</a>
-      </div>
 
-      <div class="project">
-        <h3>Gestión de Incidencias (Spring Boot)</h3>
-        <p>Aplicación web en Java que permite listar clientes usando Spring Boot, Thymeleaf y Maven. Organizada por capas (modelo, servicio, controlador), con estilos personalizados en CSS y buenas prácticas de desarrollo backend.</p>
-        <div class="tags">
-          <span class="tag">Java</span>
-          <span class="tag">Spring Boot</span>
-          <span class="tag">Thymeleaf</span>
-          <span class="tag">Maven</span>
+        <div class="project-card">
+          <div class="project-icon">🎫</div>
+          <h3>Gestión de Incidencias</h3>
+          <p>
+            Aplicación web Java organizada por capas (modelo, servicio, controlador)
+            con Thymeleaf para renderizado dinámico, gestión de clientes y
+            estilos personalizados en CSS.
+          </p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Thymeleaf</span>
+            <span class="tag">Maven</span>
+          </div>
+          <a href="https://github.com/miike96/GestionDeIncidencias" target="_blank" class="project-link">
+            Ver en GitHub →
+          </a>
         </div>
-        <a href="https://github.com/miike96/GestionDeIncidencias" target="_blank">Ver en GitHub</a>
-      </div>
 
-      <div class="project">
-        <h3>Gestor de Tareas (JavaFX)</h3>
-        <p>Aplicación de escritorio construida con JavaFX para gestionar tareas con prioridad, filtros y persistencia en SQLite. Incluye diseño visual cuidado y estructura modular.</p>
-        <div class="tags">
-          <span class="tag">Java</span>
-          <span class="tag">JavaFX</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">JDBC</span>
+        <div class="project-card">
+          <div class="project-icon">✅</div>
+          <h3>Gestor de Tareas — JavaFX</h3>
+          <p>
+            Aplicación de escritorio con JavaFX para gestionar tareas por prioridad
+            y categorías, filtros avanzados y persistencia completa en SQLite mediante JDBC.
+          </p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">JavaFX</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">JDBC</span>
+          </div>
+          <a href="https://github.com/miike96/GestorDeTareas" target="_blank" class="project-link">
+            Ver en GitHub →
+          </a>
         </div>
-        <a href="https://github.com/miike96/GestorDeTareas" target="_blank">Ver en GitHub</a>
-      </div>
 
+      </div>
     </section>
 
-    <section id="tecnologias">
-      <h2>Tecnologías que utilizo</h2>
-      <ul class="tech-list">
-        <li><strong>Java (17+):</strong> Lenguaje principal en mis proyectos, usado para backend, aplicaciones de escritorio y lógica empresarial.</li>
-        <li><strong>Spring Boot 3:</strong> Framework robusto para construir APIs y aplicaciones web en Java con arquitectura por capas y controladores REST.</li>
-        <li><strong>Spring Security 6:</strong> Autenticación y autorización basada en roles (RBAC), BCrypt y protección de endpoints.</li>
-        <li><strong>Oracle XE / JPA / Hibernate:</strong> Base de datos relacional en Docker con ORM completo y consultas parametrizadas.</li>
-        <li><strong>Maven:</strong> Gestor de dependencias y compilación para proyectos escalables y estructurados.</li>
-        <li><strong>JavaFX:</strong> Framework para interfaces gráficas en escritorio.</li>
-        <li><strong>Thymeleaf:</strong> Motor de plantillas para renderizar HTML de forma dinámica.</li>
-        <li><strong>Bootstrap 5 / Chart.js / Leaflet:</strong> Frontend moderno con gráficos interactivos y mapas.</li>
-        <li><strong>Docker:</strong> Contenedores para levantar servicios de base de datos en local.</li>
-        <li><strong>Git / GitHub:</strong> Control de versiones y publicación de proyectos.</li>
-      </ul>
-    </section>
-
+    <!-- SOBRE MÍ -->
     <section id="sobre-mi">
-      <h2>Sobre mí</h2>
-      <p>Soy Técnico en Desarrollo de Aplicaciones Multiplataforma con experiencia en desarrollo backend, videojuegos 3D con Unity y aplicaciones móviles con Jetpack Compose y Firebase. Me encanta programar, aprender rápido y aportar soluciones eficientes. Busco una oportunidad laboral donde seguir creciendo como desarrollador.</p>
+      <p class="section-label reveal">// sobre-mí</p>
+      <h2 class="reveal">Sobre Mí</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="about-grid">
+        <div>
+          <p class="about-text reveal">
+            Soy <strong>Técnico en Desarrollo de Aplicaciones Multiplataforma</strong>
+            y actualmente estudio <strong>Ingeniería en Software</strong>.
+            Cuento con <strong>3 años de experiencia en Java</strong> (Spring Boot, Spring Security,
+            JPA/Hibernate) y <strong>1 año trabajando con PHP y Yii2</strong> en entornos de producción.
+          </p>
+          <br>
+          <p class="about-text reveal">
+            También tengo experiencia en videojuegos 3D con <strong>Unity y C#</strong>,
+            aplicaciones móviles con <strong>Jetpack Compose y Firebase</strong>,
+            y despliegue de servicios con <strong>Docker</strong>.
+            Me apasiona escribir código limpio, aprender rápido y aportar soluciones
+            eficientes. Busco una oportunidad donde seguir creciendo como desarrollador.
+          </p>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-card">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Años en Java</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">1+</span>
+            <span class="stat-label">Año en PHP/Yii2</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Ganas de aprender</span>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- CONTACTO -->
     <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Email: miguelopezrodriguez@outlook.com</p>
-      <p>GitHub: <a href="https://github.com/miike96" target="_blank">https://github.com/miike96</a></p>
+      <p class="section-label reveal">// contacto</p>
+      <h2 class="reveal">Hablemos</h2>
+      <div class="section-line reveal"></div>
+
+      <div class="contact-wrapper reveal">
+        <h3>¿Tienes un proyecto o una oferta?</h3>
+        <p>Estoy abierto a nuevas oportunidades laborales y colaboraciones interesantes.</p>
+        <div class="contact-links">
+          <a href="mailto:miguelopezrodriguez@outlook.com" class="contact-pill">
+            ✉️ miguelopezrodriguez@outlook.com
+          </a>
+          <a href="https://github.com/miike96" target="_blank" class="contact-pill">
+            ⌥ github.com/miike96
+          </a>
+        </div>
+        <a href="mailto:miguelopezrodriguez@outlook.com" class="btn-primary">Enviar mensaje</a>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <p>&copy; 2025 Miguel López. Todos los derechos reservados.</p>
+    <p>Diseñado y construido por <span>Miguel López</span> · 2025 · Todos los derechos reservados</p>
   </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    /* ---------- PARTICLES ---------- */
+    const canvas = document.getElementById('particles-canvas');
+    const ctx    = canvas.getContext('2d');
+    let   W, H, particles;
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function createParticles(n = 55) {
+      particles = Array.from({ length: n }, () => ({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        r:  Math.random() * 1.6 + 0.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        a:  Math.random() * 0.6 + 0.2,
+      }));
+    }
+    createParticles();
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59,130,246,${p.a})`;
+        ctx.fill();
+      });
+      // draw connecting lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx   = particles[i].x - particles[j].x;
+          const dy   = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(59,130,246,${0.12 * (1 - dist/140)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    /* ---------- INTERSECTION OBSERVER ---------- */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // animate skill bars when visible
+          e.target.querySelectorAll && e.target.querySelectorAll('.skill-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .project-card, .timeline-item').forEach(el => {
+      revealObs.observe(el);
+    });
+
+    // skill bars in their parent section
+    const skillObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-fill').forEach(bar => {
+            setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+          });
+          skillObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#habilidades').forEach(el => skillObs.observe(el));
+
+    /* ---------- STAGGERED PROJECT CARDS ---------- */
+    const projectObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cards = e.target.querySelectorAll('.project-card');
+          cards.forEach((c, i) => {
+            setTimeout(() => c.classList.add('visible'), i * 120);
+          });
+          projectObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.projects-grid').forEach(el => projectObs.observe(el));
+
+    /* ---------- STAGGERED TIMELINE ---------- */
+    const timelineObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const items = e.target.querySelectorAll('.timeline-item');
+          items.forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 150);
+          });
+          timelineObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.timeline').forEach(el => timelineObs.observe(el));
+
+    /* ---------- NAV ACTIVE STATE ---------- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === '#' + e.target.id
+              ? 'var(--accent-light)' : '';
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => navObs.observe(s));
+  </script>
 
 </body>
 </html>
