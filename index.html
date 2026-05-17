@@ -217,24 +217,7 @@
       background: rgba(59,130,246,0.08);
       transform: translateY(-2px);
     }
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      animation: fadeInDown 1.2s 1s ease both;
-    }
-    .scroll-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: scrollDot 1.5s ease-in-out infinite;
-    }
-    @keyframes scrollDot {
-      0%,100% { opacity: 0.2; transform: translateY(0); }
-      50%      { opacity: 1;   transform: translateY(4px); }
-    }
+    /* scroll indicator removed */
 
     /* ===== SECTIONS ===== */
     main { position: relative; z-index: 1; }
@@ -616,23 +599,20 @@
       <li><a href="#proyectos">Proyectos</a></li>
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li><a href="https://www.linkedin.com/in/miguel-l%C3%B3pez-rodr%C3%ADguez-365710185/" target="_blank" style="color:var(--accent)">LinkedIn ↗</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-badge">Disponible para nuevas oportunidades</div>
+    <div class="hero-badge">Desarrollador PHP en SOLTEL Group · Sevilla</div>
     <div class="hero-avatar">ML</div>
     <h1>Miguel <span>López</span></h1>
-    <p class="hero-subtitle">Desarrollador de Software Backend</p>
-    <p class="hero-stack">Java · PHP · Spring Boot · Yii2 · Unity 3D</p>
+    <p class="hero-subtitle">Desarrollador de Software Backend &amp; DevOps</p>
+    <p class="hero-stack">Java · PHP · Yii2 · Spring Boot · Azure · Docker</p>
     <div class="hero-cta">
       <a href="#proyectos" class="btn-primary">Ver Proyectos</a>
       <a href="#contacto" class="btn-outline">Contactar</a>
-    </div>
-    <div class="hero-scroll">
-      <span>scroll</span>
-      <div class="scroll-dot"></div>
     </div>
   </section>
 
@@ -644,21 +624,24 @@
       <h2 class="reveal">Trayectoria Profesional</h2>
       <div class="section-line reveal"></div>
 
+      <!-- EXPERIENCIA LABORAL -->
+      <p style="font-family:'Fira Code',monospace;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1.2rem;">Experiencia laboral</p>
       <div class="timeline">
 
+        <!-- 1. SOLTEL -->
         <div class="timeline-item">
           <div class="timeline-dot current"></div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <span class="timeline-role">Desarrollador PHP · Yii2</span>
-              <span class="timeline-date">2024 — Presente</span>
+              <span class="timeline-role">Desarrollador de PHP</span>
+              <span class="timeline-date">sept. 2025 — actualidad · 9 meses</span>
             </div>
-            <div class="timeline-company">Posición Actual · Trabajo</div>
+            <div class="timeline-company">SOLTEL Group · Jornada completa · Sevilla, Andalucía</div>
             <p class="timeline-desc">
-              Desarrollo y mantenimiento de aplicaciones web con PHP y el framework Yii2.
-              Implementación de módulos, APIs RESTful, optimización de consultas SQL
-              y mantenimiento de sistemas en producción. Aplicación de buenas prácticas
-              MVC y gestión de dependencias con Composer.
+              Desarrollo de aplicaciones web con PHP y el framework Yii2 en jornada completa.
+              Implementación de módulos, APIs RESTful, optimización de consultas SQL y
+              mantenimiento de sistemas en producción. Buenas prácticas MVC y gestión de
+              dependencias con Composer.
             </p>
             <div class="timeline-tags">
               <span class="tag">PHP</span>
@@ -666,52 +649,151 @@
               <span class="tag">MySQL</span>
               <span class="tag">REST API</span>
               <span class="tag">Composer</span>
+              <span class="tag">MVC</span>
             </div>
           </div>
         </div>
 
+        <!-- 2. Radio Hispano -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <span class="timeline-role">Desarrollador Java · Spring Boot</span>
-              <span class="timeline-date">2021 — 2024</span>
+              <span class="timeline-role">Desarrollador Backend y DevOps</span>
+              <span class="timeline-date">sept. 2024 — may. 2025 · 9 meses</span>
             </div>
-            <div class="timeline-company">Proyectos Backend · Experiencia</div>
+            <div class="timeline-company">RADIO HISPANO COMUNICACIONES SL · Jornada completa · Isla Cristina, Andalucía</div>
             <p class="timeline-desc">
-              Construcción de aplicaciones web completas con Java 17 y Spring Boot 3.
-              Integración con bases de datos relacionales (Oracle XE, PostgreSQL),
-              autenticación con Spring Security 6 (RBAC, BCrypt), contenedores Docker
-              y frontend dinámico con Thymeleaf y Bootstrap.
+              Desarrollo de servicios backend en Java, creando e integrando APIs RESTful.
+              Automatización de procesos empresariales con Power Automate, integrados con ERP
+              Business Central. Implementación de pipelines CI/CD y despliegue de soluciones
+              en entornos Azure. Scripting con Python para automatizaciones y control de datos.
+              Trabajo colaborativo en entornos ágiles y soporte técnico al equipo.
             </p>
             <div class="timeline-tags">
-              <span class="tag">Java 17</span>
-              <span class="tag">Spring Boot 3</span>
-              <span class="tag">Spring Security</span>
-              <span class="tag">JPA/Hibernate</span>
+              <span class="tag">Java</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Azure</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Power Automate</span>
+              <span class="tag">Python</span>
               <span class="tag">Docker</span>
             </div>
           </div>
         </div>
 
+        <!-- 3. Vodafone -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <span class="timeline-role">Grado en Ingeniería de Software</span>
-              <span class="timeline-date">En curso</span>
+              <span class="timeline-role">Técnico DevOps / Desarrollador Junior</span>
+              <span class="timeline-date">may. 2021 — ago. 2024 · 3 años 4 meses</span>
             </div>
-            <div class="timeline-company">Universidad · Formación Académica</div>
+            <div class="timeline-company">Vodafone · Jornada completa · Huelva, Andalucía · Presencial</div>
             <p class="timeline-desc">
-              Formación en algoritmos, estructuras de datos, ingeniería del software,
-              bases de datos, sistemas operativos y desarrollo de aplicaciones multiplataforma.
-              Titulación previa: Técnico en Desarrollo de Aplicaciones Multiplataforma.
+              Soporte técnico a usuarios y resolución de incidencias de software y sistemas.
+              Desarrollo de soluciones internas con MySQL y herramientas Microsoft.
+              Automatización de procesos internos con PowerApps y Power Automate.
+              Participación en proyectos de mejora tecnológica e integración de sistemas.
+              Colaboración continua con departamentos técnicos y de negocio.
             </p>
             <div class="timeline-tags">
-              <span class="tag">Algoritmos</span>
-              <span class="tag">Bases de Datos</span>
-              <span class="tag">DAM</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">PowerApps</span>
+              <span class="tag">Power Automate</span>
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Soporte TI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Ayuntamiento -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Desarrollador Java</span>
+              <span class="timeline-date">mar. 2024 — jun. 2024 · 4 meses</span>
+            </div>
+            <div class="timeline-company">Ayuntamiento de Isla Cristina · Contrato de prácticas</div>
+            <p class="timeline-desc">
+              Desarrollo de aplicaciones en Java durante el periodo de prácticas.
+              Trabajo con control de versiones Git/GitHub, programación orientada a objetos
+              y colaboración en proyectos institucionales.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Java</span>
+              <span class="tag">C#</span>
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">Prácticas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EDUCACIÓN -->
+      <p style="font-family:'Fira Code',monospace;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin:3rem 0 1.2rem;">Formación académica</p>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot current"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Grado en Ingeniería del Software</span>
+              <span class="timeline-date">ene. 2025 — Actualidad</span>
+            </div>
+            <div class="timeline-company">Universidad Alfonso X el Sabio</div>
+            <p class="timeline-desc">
+              Formación universitaria en ingeniería del software: algoritmos, estructuras
+              de datos, arquitectura de sistemas, bases de datos y desarrollo de aplicaciones.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Spring Boot</span>
+              <span class="tag">Power Automate</span>
               <span class="tag">Ingeniería SW</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Técnico en Desarrollo de Aplicaciones Multiplataforma (DAM)</span>
+              <span class="timeline-date">sept. 2022 — jun. 2024</span>
+            </div>
+            <div class="timeline-company">IES Padre José Miravent</div>
+            <p class="timeline-desc">
+              Formación de grado superior en programación multiplataforma con Java.
+              Titulación completada con éxito.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Java</span>
+              <span class="tag">DAM</span>
+              <span class="tag">Multiplataforma</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-role">Técnico en Sistemas Microinformáticos y Redes (SMR)</span>
+              <span class="timeline-date">ene. 2018 — jun. 2020</span>
+            </div>
+            <div class="timeline-company">IES Padre José Miravent</div>
+            <p class="timeline-desc">
+              Formación en informática, redes y sistemas. Base técnica para el posterior
+              desarrollo en programación y DevOps.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Informática</span>
+              <span class="tag">Redes</span>
+              <span class="tag">Sistemas</span>
             </div>
           </div>
         </div>
@@ -905,32 +987,33 @@
       <div class="about-grid">
         <div>
           <p class="about-text reveal">
-            Soy <strong>Técnico en Desarrollo de Aplicaciones Multiplataforma</strong>
-            y actualmente estudio <strong>Ingeniería en Software</strong>.
-            Cuento con <strong>3 años de experiencia en Java</strong> (Spring Boot, Spring Security,
-            JPA/Hibernate) y <strong>1 año trabajando con PHP y Yii2</strong> en entornos de producción.
+            Soy <strong>Desarrollador PHP en SOLTEL Group (Sevilla)</strong> y estudio
+            <strong>Ingeniería del Software en la Universidad Alfonso X el Sabio</strong>.
+            Tengo más de <strong>4 años de experiencia profesional</strong> en empresas como
+            Vodafone, Radio Hispano Comunicaciones y el Ayuntamiento de Isla Cristina,
+            trabajando en backend, DevOps y automatización.
           </p>
           <br>
           <p class="about-text reveal">
-            También tengo experiencia en videojuegos 3D con <strong>Unity y C#</strong>,
-            aplicaciones móviles con <strong>Jetpack Compose y Firebase</strong>,
-            y despliegue de servicios con <strong>Docker</strong>.
-            Me apasiona escribir código limpio, aprender rápido y aportar soluciones
-            eficientes. Busco una oportunidad donde seguir creciendo como desarrollador.
+            Mi stack principal incluye <strong>PHP · Yii2</strong>, <strong>Java · Spring Boot</strong>,
+            <strong>Azure · CI/CD · Docker</strong> y <strong>Power Automate</strong>.
+            También tengo experiencia en <strong>Unity 3D (C#)</strong>, aplicaciones móviles con
+            <strong>Kotlin y Jetpack Compose</strong>, y scripting con <strong>Python</strong>.
+            Me apasiona el código limpio, aprender rápido y aportar valor real en cada proyecto.
           </p>
         </div>
         <div class="about-stats reveal">
           <div class="stat-card">
-            <span class="stat-number">3+</span>
-            <span class="stat-label">Años en Java</span>
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Años de experiencia</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">1+</span>
-            <span class="stat-label">Año en PHP/Yii2</span>
+            <span class="stat-number">3</span>
+            <span class="stat-label">Empresas</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">5+</span>
-            <span class="stat-label">Proyectos</span>
+            <span class="stat-label">Proyectos GitHub</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">∞</span>
@@ -955,6 +1038,9 @@
           </a>
           <a href="https://github.com/miike96" target="_blank" class="contact-pill">
             ⌥ github.com/miike96
+          </a>
+          <a href="https://www.linkedin.com/in/miguel-l%C3%B3pez-rodr%C3%ADguez-365710185/" target="_blank" class="contact-pill">
+            💼 LinkedIn · Miguel López
           </a>
         </div>
         <a href="mailto:miguelopezrodriguez@outlook.com" class="btn-primary">Enviar mensaje</a>
