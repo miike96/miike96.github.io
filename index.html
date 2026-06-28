@@ -57,6 +57,17 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- ===== GOOGLE ANALYTICS (GA4) ===== -->
+  <!-- 1. Crea tu propiedad en https://analytics.google.com -->
+  <!-- 2. Sustituye G-XXXXXXXXXX por tu Measurement ID (Admin → Flujos de datos → Tu stream → ID de medición) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after {
@@ -1103,6 +1114,9 @@
 
   <footer>
     <p>Diseñado y construido por <span>Miguel López</span> · 2025 · Todos los derechos reservados</p>
+    <p style="margin-top:0.6rem;">
+      <img src="https://komarev.com/ghpvc/?username=miike96-portfolio&color=3b82f6&style=flat-square&label=Visitas" alt="Contador de visitas">
+    </p>
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
